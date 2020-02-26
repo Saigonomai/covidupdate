@@ -1,17 +1,30 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import "./Nav.css"
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a className="navbar-brand" href="/">
+    <nav  className="Navbar">
+        <h1 className="Brand">
         Covid-19 Statistics Tracker
-      </a>
-      <a className="nav-link text-light" href="/">
-        Global Statistics
-      </a>
-      <a className="nav-link text-light" href="/">
-        Work in Progress
-      </a>
+        </h1>
+        <ul className="NavClass">
+            <li>
+                <NavLink exact to="/">
+                    Global Statistics
+                </NavLink>
+            </li>
+            <li>
+                <NavLink exact to="/">
+                Work in Progress
+                </NavLink>
+            </li>
+            <li>
+                <NavLink exact to="/">
+                Still in development
+                </NavLink>
+            </li>
+        </ul>
 
     </nav>
   );
