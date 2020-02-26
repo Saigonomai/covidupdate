@@ -1,33 +1,69 @@
-import React from "react";
+import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "./Nav.css"
+import API from "../../utils/API"
 
-function Nav() {
-  return (
-    <nav  className="Navbar">
-        <h1 className="Brand">
-        Covid-19 Statistics Tracker
-        </h1>
-        <ul className="NavClass">
-            <li>
-                <NavLink exact to="/">
-                    Global Statistics
-                </NavLink>
-            </li>
-            <li>
-                <NavLink exact to="/">
-                Work in Progress
-                </NavLink>
-            </li>
-            <li>
-                <NavLink exact to="/">
-                Still in development
-                </NavLink>
-            </li>
-        </ul>
+class Nav extends Component {
+state = {
+    canStatsTable: []
+};
 
-    </nav>
-  );
+componentDidMount(){
+    this.getCanStats();
+}
+
+getCanStats = () => {
+    API.getCanStats()
+        .then(res => {
+            let table = []
+        table.push(<tr><td>Region</td><td>Cases</td><td>Deaths</td><td>Recovered</td></tr>)
+            for (let i = 0; i < res.data.length; i++) {
+                let children = []
+            children.push(<td>{res.data[i].region}</td>)
+            children.push(<td>{res.data[i].cases}</td>)
+            children.push(<td>{res.data[i].deaths}</td>)
+            children.push(<td>{res.data[i].recovered}</td>)
+            table.push(<tr>{children}</tr>)
+            }
+            this.setState({canStatsTable: table})
+        })
+        .catch(err => console.log(err));
+};
+
+    render(){
+        return (
+        <nav  className="Navbar">
+            <h1 className="Brand">
+            Covid-19 Statistics Tracker
+            </h1>
+            <ul className="NavClass">
+                <li>
+                    <NavLink exact to="/">
+                        Global Statistics
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/">
+                    Work in Progress
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/">
+                    Still in development
+                    </NavLink>
+                </li>
+            </ul>
+
+            <div className="canStats">
+                <h2>Covid-19 Canadian Statistics</h2>
+                <table className="canStatsTable">
+                    {this.state.canStatsTable}
+                </table>
+            </div>
+
+        </nav>
+        );
+    }
 }
 
 export default Nav;
