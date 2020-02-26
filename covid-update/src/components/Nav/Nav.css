@@ -1,21 +1,17 @@
 .Brand {
     font-size: 35px;
     margin: 0px;
-    color: lime;
-    font-family: 'Courier New', Courier, monospace;
 }
 
-.NavClass{
-    
+.NavClass{    
     list-style: none;
     padding: 20px;
     border-bottom: 2px dashed lime;
-    
 }
 .NavClass li {
     display: inline-block;
     text-decoration: none;
-    margin-right: 20px;
+    margin-right: 40px;
     color: black;
 }
 
@@ -23,7 +19,6 @@
     text-decoration: none;
     color:black;
 }
-
 
 .NavClass li a.active{
 color:lime;
