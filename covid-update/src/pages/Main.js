@@ -5,13 +5,42 @@ import "./Main.css"
 
 class Main extends Component {
     state = {
-        gloStatsTable: []
+        gloStatsTable: [],
+        statsData: []
     };
+
+    componentDidMount(){
+      this.getGloStats();
+  }
+  
+  getGloStats = () => {
+      API.getStats()
+          .then(res => {
+              let table = []
+          table.push(<tr><td><h2>Country</h2></td><td><h2>Region</h2></td><td><h2>Cases</h2></td><td><h2>Deaths</h2></td><td><h2>Recovered</h2></td></tr>)
+              for (let i = 0; i < res.data.length; i++) {
+                  let children = []
+              children.push(<td className="entry">{res.data[i].country}</td>)
+              children.push(<td className="entry">{res.data[i].region}</td>)
+              children.push(<td className="entry">{res.data[i].cases}</td>)
+              children.push(<td className="entry">{res.data[i].deaths}</td>)
+              children.push(<td className="entry">{res.data[i].recovered}</td>)
+              table.push(<tr>{children}</tr>)
+              }
+              this.setState({gloStatsTable: table});
+              this.setState({statsData: res.data})
+          })
+          .catch(err => console.log(err));
+  };
 
   render() {
     return (
-          <div>
-          </div>
+        <div className="gloStats">
+        <h2>Covid-19 Global Statistics</h2>
+        <table className="gloStatsTable">
+            {this.state.gloStatsTable}
+        </table>
+    </div>
     );
   }
 }

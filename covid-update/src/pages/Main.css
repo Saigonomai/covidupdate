@@ -1,0 +1,19 @@
+.gloStats {
+    text-align: center;
+
+    border-bottom: 2px dashed lime;
+}
+
+.entry {
+    font-size: 18px;
+}
+
+table.gloStatsTable {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+table.gloStatsTable, th, td {
+    border: 1px solid green;
+  }

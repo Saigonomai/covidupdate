@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import "./Nav.css"
 import API from "../../utils/API"
+import socketIOClient from "socket.io-client";
+import "./Nav.css"
 
+var socket;
 class Nav extends Component {
-state = {
-    canStatsTable: []
-};
+    constructor(){
+        super();
+        this.state = {
+            canStatsTable: [],
+            endpoint: "http://localhost:3001"
+        };
+        
+        socket = socketIOClient(this.state.endpoint);
+    }
 
 componentDidMount(){
     this.getCanStats();
@@ -66,4 +74,4 @@ getCanStats = () => {
     }
 }
 
-export default Nav;
+export { Nav, socket};

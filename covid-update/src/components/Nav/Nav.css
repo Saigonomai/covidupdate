@@ -27,12 +27,15 @@ font-size: larger;
 
 .canStats {
     text-align: center;
-
     border-bottom: 2px dashed lime;
-}
-
-table {
-    width: 50%;
-    margin: 0 auto;
     padding-bottom: 20px;
 }
+
+table.canStatsTable {
+    width: 50%;
+    margin: 0 auto;
+}
+
+table.canStatsTable, th, td {
+    border: 1px solid darkgreen;
+  }

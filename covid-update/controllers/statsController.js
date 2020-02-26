@@ -4,8 +4,7 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Stat
-      .find(req.query)
-      .sort({ date: -1 })
+      .find(req.query, [], {sort: {"cases": -1}})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -26,7 +25,7 @@ module.exports = {
   findCanada: function(req, res){
       db.Stat
       .find({country:"Canada"})
-      .sort({ date: -1 })
+      .sort({ cases: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
