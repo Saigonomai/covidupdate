@@ -26,7 +26,12 @@ componentWillUnmount() {
 }
 
 updateStats = () => {
-    socket.emit("update_data");
+    let date_ob = new Date()
+    let year = date_ob.getFullYear();
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let day = ("0" + (date_ob.getDate() - 1)).slice(-2);
+    let check = month + "-" + day + "-" + year + ".csv"
+    socket.emit("update_data", check);
 }
 
 
@@ -72,7 +77,8 @@ getCanStats = () => {
                 </li>
             </ul>
 
-            <div className="refresh" onClick={this.updateStats}>Update Statistics</div>
+            <button className="refresh" onClick={this.updateStats}>Update Statistics</button>
+            <p className="tooltip">Note: Database gets updated after 9PM EST everyday.</p>
 
             <div className="canStats">
                 <h2>Covid-19 Canadian Statistics</h2>

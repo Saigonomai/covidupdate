@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import "./Main.css"
+import { socket } from "../components/Nav";
 
 
 class Main extends Component {
@@ -11,8 +12,13 @@ class Main extends Component {
 
     componentDidMount(){
       this.getGloStats();
-  }
-  
+      socket.on("new_data", this.getGloStats);
+    }
+
+    componentWillUnmount() {
+        socket.off("new_data");
+    }
+
   getGloStats = () => {
       API.getStats()
           .then(res => {
