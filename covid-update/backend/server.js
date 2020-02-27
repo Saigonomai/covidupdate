@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const cors = require("cors")
 const bodyParser = require('body-parser');
@@ -43,7 +44,7 @@ app.use(cors(corsOptions));
 // Add routes, both API and view
 app.use(routes);
 
-mongoose.connect("mongodb://localhost/covidupdate", {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/covidupdate", {useNewUrlParser: true});
 
 
 
@@ -111,7 +112,7 @@ socketIO.on("connection", socket =>{
     let day = ("0" + date.getDate()).slice(-2);
     let hours = date.getHours();
     let tail = month + "-" + day + "-" + year + ".csv"
-    
+
     if (hours == 19) {
       axios.get(url+tail).then(function (response) {
         var responseList = response.data.split(/\r?\n/);

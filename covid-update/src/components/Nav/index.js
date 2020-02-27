@@ -66,13 +66,13 @@ getCanStats = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/">
+                    <NavLink exact to="/news">
                     Work in Progress
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/">
-                    Still in development
+                    <NavLink exact to="/news">
+                    Latest News
                     </NavLink>
                 </li>
             </ul>
