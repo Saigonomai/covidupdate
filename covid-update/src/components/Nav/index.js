@@ -18,7 +18,17 @@ class Nav extends Component {
 
 componentDidMount(){
     this.getCanStats();
+    socket.on("new_data", this.getCanStats);
 }
+
+componentWillUnmount() {
+    socket.off("new_data");
+}
+
+updateStats = () => {
+    socket.emit("update_data");
+}
+
 
 getCanStats = () => {
     API.getCanStats()
@@ -61,6 +71,8 @@ getCanStats = () => {
                     </NavLink>
                 </li>
             </ul>
+
+            <div className="refresh" onClick={this.updateStats}>Update Statistics</div>
 
             <div className="canStats">
                 <h2>Covid-19 Canadian Statistics</h2>
