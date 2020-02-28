@@ -14,9 +14,10 @@ export function List({ children }) {
 export function ListItem(props) {
     return (
         <div className="outerbox">
-        <button  href={props.link}>
+        <button onClick={() => { 
+            window.location.href =props.link}}>
             <span className="entry">
-            <p><h2>{props.title}</h2> <br/><a className="author">Author: {props.author} </a></p>
+            <p><h2>{props.title}</h2> <br/><p className="author">Author: {props.author} </p></p>
             <p className="description">{props.description}</p>
             </span>
         </button>

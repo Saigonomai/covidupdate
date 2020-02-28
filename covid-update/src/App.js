@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css"
 import Main from "./pages/Main";
 import News from "./pages/News";
+import Maps from "./pages/Maps";
 import { Nav } from "./components/Nav";
 
 function App() {
@@ -11,9 +12,9 @@ function App() {
       <div className="App">
         <Nav />
         <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/news" component={News} />
-            {/* <Route/> */}
+            <Route exact path="/" component={Main}/>
+            <Route exact path="/news" component={News}/>
+            <Route exact path="/maps" component={Maps}/>
         </Switch>
       </div>
     </Router>

@@ -11,12 +11,15 @@ router.route("/canada")
 
 router.get("/news", function(req, res){
     let key = process.env.API_KEY;
-    axios.get("http://newsapi.org/v2/everything?q=coronavirus&language=en&sortBy=publishedAt&pageSize=10&apiKey="+key).then(function (response) {
+    axios.get("http://newsapi.org/v2/everything?qInTitle=coronavirus&language=en&sortBy=publishedAt&pageSize=10&apiKey="+key).then(function (response) {
         res.json(response.data.articles);
     });
+});
 
-
-})
+router.get("/mapbox", function(req,res){
+    let key = process.env.MAPBOX_TOKEN;
+        res.json(key);
+});
 
 
 module.exports = router;

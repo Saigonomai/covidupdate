@@ -9,5 +9,8 @@ export default {
     },
     getNews: function(){
         return axios.get("http://localhost:3001/api/stats/news")
+    },
+    getMapbox: function(){
+        return axios.get("http://localhost:3001/api/stats/mapbox")
     }
 }
