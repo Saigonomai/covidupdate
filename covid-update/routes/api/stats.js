@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const statsController = require("../../../controllers/statsController");
+const statsController = require("../../controllers/statsController");
 const axios = require("axios");
 
 router.route("/")

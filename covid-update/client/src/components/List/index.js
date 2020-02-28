@@ -17,7 +17,9 @@ export function ListItem(props) {
         <button onClick={() => { 
             window.location.href =props.link}}>
             <span className="entry">
-            <p><h2>{props.title}</h2> <br/><p className="author">Author: {props.author} </p></p>
+            <p><h2>{props.title}</h2>
+            <br/><p>Source: {props.source}</p>
+            <p className="author">Author: {props.author} </p></p>
             <p className="description">{props.description}</p>
             </span>
         </button>

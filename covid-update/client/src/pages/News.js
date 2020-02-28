@@ -29,6 +29,7 @@ class News extends Component {
                   <ListItem
                   link={article.url}
                   title={article.title}
+                  source={article.source.name}
                   author={article.author || "N/A"}
                   description={article.description || "N/A"}/>
                 ))}
