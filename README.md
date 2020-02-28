@@ -1,68 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Covid-19 Updater
 
-## Available Scripts
+## Link to Deployed Website
+https://covid-update.herokuapp.com/
 
-In the project directory, you can run:
+## What is this?
+This is a webapp that contains some of the most recent Canadian relevant information in regards to the Covid-19 outbreak. It contains stats on a global scale and a Canadian scale, and interactive map that documents the current cases in Canada, and the most recent news about the epidemic all in one. 
 
-### `npm start`
+## How to get started
+The app has a navigation menu at the top with 3 options: Global Statistics, Canadian Interactive Map, and Latest News. The menu also has pinned Canadian stats about the outbreak. These stats can be refreshed with the button if necessary, but are automatically updated at 9pmEST every day using the John Hopkins University data on their [github](https://github.com/CSSEGISandData/COVID-19) 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Global Statistics
+This page is the main page and contains stats regarding the outbreak on a global level. Like with the Canadian ones that are pinned, these statistics are also automatically updated everyday and breakdown the number of cases, deaths, and recoveries.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Canadian Interactive Map
+This page displays a map centered around Canada with markers that signify a location with cases of the outbreak. By clicking on the marker a small popup appears with information about the location and the number of cases. The map was made using the MapBox api and the react-map-gl library.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### Latest News
+This page loads 10 of the most recent news pieces that are related the Coronavirus outbreak. Each entry has its title, source, author, and a brief description. Clicking on an entry will bring you to the news article on the source's website. These articles are loaded in using the News API
