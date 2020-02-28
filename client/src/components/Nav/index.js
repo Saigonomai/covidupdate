@@ -10,7 +10,7 @@ class Nav extends Component {
         super();
         this.state = {
             canStatsTable: [],
-            endpoint: "http://localhost:3001"
+            endpoint: "http://localhost:"+process.env.PORT
         };
         
         socket = socketIOClient(this.state.endpoint);
