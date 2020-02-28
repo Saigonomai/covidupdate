@@ -9,11 +9,10 @@ class Nav extends Component {
     constructor(){
         super();
         this.state = {
-            canStatsTable: [],
-            endpoint: "http://localhost:3001"
+            canStatsTable: []
         };
         
-        socket = socketIOClient(this.state.endpoint);
+        socket = socketIOClient();
     }
 
 componentDidMount(){
