@@ -2,15 +2,15 @@ import axios from "axios";
 
 export default {
     getStats: function(){
-        return axios.get("http://localhost:3001/api/stats");
+        return axios.get("/api/stats");
     },
     getCanStats: function(){
-        return axios.get("http://localhost:3001/api/stats/canada");
+        return axios.get("/api/stats/canada");
     },
     getNews: function(){
-        return axios.get("http://localhost:3001/api/stats/news")
+        return axios.get("/api/stats/news")
     },
     getMapbox: function(){
-        return axios.get("http://localhost:3001/api/stats/mapbox")
+        return axios.get("/api/stats/mapbox")
     }
 }
