@@ -17,7 +17,7 @@ class Nav extends Component {
     }
 
 componentDidMount(){
-    this.getSocket();
+    this.getCanStats();
     socket.on("new_data", this.getCanStats);
 }
 
