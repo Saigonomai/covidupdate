@@ -1,17 +1,13 @@
 {
   "name": "covid-update",
   "version": "0.1.0",
-  "private": true,
-  "main": "server",
+  "main": "server.js",
+  "license": "ISC",
   "scripts": {
-    "server": "node server.js",
-    "start": "concurrently \"nodemon server.js\" \"cd client && npm run start\"",
-    "build": "node scripts/build.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "eject": "react-scripts eject"
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
@@ -26,5 +22,8 @@
     "http": "0.0.0",
     "mongoose": "^5.9.2",
     "socket.io": "^2.3.0"
+  },
+  "engines": {
+    "node": "12.13.1"
   }
 }
