@@ -68,7 +68,6 @@ socketIO.on("connection", socket =>{
     }
 
     let tail = month + "-" + day + "-" + year + ".csv"
-    if (check != tail) {
       axios.get(url+tail).then(function (response) {
         var responseList = response.data.split(/\r?\n/);
         for (i = 0; i < responseList.length; i++) {
@@ -85,24 +84,22 @@ socketIO.on("connection", socket =>{
         responseList.pop();
         let promises = [];
         for (let i = 0; i < responseList.length; i++) {
+            var query = {};
+            query.region = responseList[i][0];
+            query.country = responseList[i][1];
             var statBlock = {};
             statBlock.region = responseList[i][0];
             statBlock.country = responseList[i][1];
             statBlock.cases = responseList[i][3];
             statBlock.deaths = responseList[i][4];
             statBlock.recovered = responseList[i][5];
-            const promise = Stat.findOneAndUpdate(statBlock, statBlock, {upsert:true})
+            const promise = Stat.findOneAndUpdate(query, statBlock, {upsert:true})
             promises.push(promise);
         }
         Promise.all(promises).then(() => {
-          console.log("Data updated")
           socketIO.sockets.emit("new_data");
         });
       });
-    }
-    else {
-      console.log("Update requested but no new data");
-    }
   });
 
   setInterval(() => {
@@ -130,15 +127,18 @@ socketIO.on("connection", socket =>{
         responseList.pop();
         let promises = [];
         for (let i = 0; i < responseList.length; i++) {
-            var statBlock = {};
-            statBlock.region = responseList[i][0];
-            statBlock.country = responseList[i][1];
-            statBlock.cases = responseList[i][3];
-            statBlock.deaths = responseList[i][4];
-            statBlock.recovered = responseList[i][5];
-            const promise = Stat.findOneAndUpdate(statBlock, statBlock, {upsert:true})
-            promises.push(promise);
-        }
+          var query = {};
+          query.region = responseList[i][0];
+          query.country = responseList[i][1];
+          var statBlock = {};
+          statBlock.region = responseList[i][0];
+          statBlock.country = responseList[i][1];
+          statBlock.cases = responseList[i][3];
+          statBlock.deaths = responseList[i][4];
+          statBlock.recovered = responseList[i][5];
+          const promise = Stat.findOneAndUpdate(query, statBlock, {upsert:true})
+          promises.push(promise);
+      }
         Promise.all(promises).then(() => {
           socketIO.sockets.emit("new_data");
         });

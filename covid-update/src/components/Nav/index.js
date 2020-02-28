@@ -26,12 +26,7 @@ componentWillUnmount() {
 }
 
 updateStats = () => {
-    let date_ob = new Date()
-    let year = date_ob.getFullYear();
-    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-    let day = ("0" + (date_ob.getDate() - 1)).slice(-2);
-    let check = month + "-" + day + "-" + year + ".csv"
-    socket.emit("update_data", check);
+    socket.emit("update_data");
 }
 
 
@@ -66,8 +61,8 @@ getCanStats = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/news">
-                    Work in Progress
+                    <NavLink exact to="/maps">
+                    Canadian Interactive Map
                     </NavLink>
                 </li>
                 <li>
