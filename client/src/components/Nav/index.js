@@ -10,7 +10,7 @@ class Nav extends Component {
         super();
         this.state = {
             canStatsTable: [],
-            endpoint: "http://localhost:"+process.env.PORT
+            endpoint: "http://localhost:3001"
         };
         
         socket = socketIOClient(this.state.endpoint);
@@ -18,6 +18,7 @@ class Nav extends Component {
 
 componentDidMount(){
     this.getCanStats();
+    this.getSocket();
     socket.on("new_data", this.getCanStats);
 }
 
@@ -29,6 +30,12 @@ updateStats = () => {
     socket.emit("update_data");
 }
 
+getSocket= () => {
+    API.getPort()
+        .then(res => {
+            console.log(res.data);
+        })
+}
 
 getCanStats = () => {
     API.getCanStats()

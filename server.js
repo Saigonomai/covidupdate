@@ -10,7 +10,7 @@ const axios = require("axios");
 const Stat = require("./models/stats");
 
 const PORT = process.env.PORT || 3001;
-const whitelist = ['https://covid-update.herokuapp.com/'];
+const whitelist = ['http://localhost:3000',"https://covid-update.herokuapp.com/"];
 const corsOptions = {
   credentials: true,
   origin: (origin, callback) => {
