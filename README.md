@@ -13,7 +13,7 @@ The app has a navigation menu at the top with 3 options: Global Statistics, Cana
 This page is the main page and contains stats regarding the outbreak on a global level. Like with the Canadian ones that are pinned, these statistics are also automatically updated everyday and breakdown the number of cases, deaths, and recoveries.
 
 #### Canadian Interactive Map
-This page displays a map centered around Canada with markers that signify a location with cases of the outbreak. By clicking on the marker a small popup appears with information about the location and the number of cases. The map was made using the MapBox api and the react-map-gl library.
+This page displays a map centered around Canada with markers that signify a location with cases of the outbreak. By clicking on the marker a small popup appears with information about the location and the number of cases. The map was made using the [MapBox API](https://www.mapbox.com/) and the react-map-gl library.
 
 #### Latest News
-This page loads 10 of the most recent news pieces that are related the Coronavirus outbreak. Each entry has its title, source, author, and a brief description. Clicking on an entry will bring you to the news article on the source's website. These articles are loaded in using the News API
+This page loads 10 of the most recent news pieces that are related the Coronavirus outbreak. Each entry has its title, source, author, and a brief description. Clicking on an entry will bring you to the news article on the source's website. These articles are searched using the [News API](https://newsapi.org/) and then loaded in dynamically.
