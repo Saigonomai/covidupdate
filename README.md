@@ -7,7 +7,7 @@ https://covid-update.herokuapp.com/
 This is a webapp that contains some of the most recent Canadian relevant information in regards to the Covid-19 outbreak. It contains stats on a global scale and a Canadian scale, and interactive map that documents the current cases in Canada, and the most recent news about the epidemic all in one. 
 
 ## How to get started
-The app has a navigation menu at the top with 3 options: Global Statistics, Canadian Interactive Map, and Latest News. The menu also has pinned Canadian stats about the outbreak. These stats can be refreshed with the button if necessary, but are automatically updated at 9pmEST every day using the John Hopkins University data on their [github](https://github.com/CSSEGISandData/COVID-19) 
+The app has a navigation menu at the top with 3 options: Global Statistics, Canadian Interactive Map, and Latest News. The menu also has pinned Canadian stats about the outbreak. These stats can be refreshed with the button if necessary, but are automatically updated at 9pmEST every day using the John Hopkins University data on their [github](https://github.com/CSSEGISandData/COVID-19).
 
 #### Global Statistics
 This page is the main page and contains stats regarding the outbreak on a global level. Like with the Canadian ones that are pinned, these statistics are also automatically updated everyday and breakdown the number of cases, deaths, and recoveries.
