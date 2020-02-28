@@ -17,7 +17,6 @@ class Nav extends Component {
     }
 
 componentDidMount(){
-    this.getCanStats();
     this.getSocket();
     socket.on("new_data", this.getCanStats);
 }
@@ -28,13 +27,6 @@ componentWillUnmount() {
 
 updateStats = () => {
     socket.emit("update_data");
-}
-
-getSocket= () => {
-    API.getPort()
-        .then(res => {
-            console.log(res.data);
-        })
 }
 
 getCanStats = () => {
