@@ -10,16 +10,16 @@ const axios = require("axios");
 const Stat = require("./models/stats");
 
 const PORT = process.env.PORT || 3001;
-const whitelist = ['https://covid-update.herokuapp.com/'];
-const corsOptions = {
-  credentials: true,
-  origin: (origin, callback) => {
-    if(whitelist.includes(origin))
-      return callback(null, true)
+// const whitelist = ['https://covid-update.herokuapp.com/'];
+// const corsOptions = {
+//   credentials: true,
+//   origin: (origin, callback) => {
+//     if(whitelist.includes(origin))
+//       return callback(null, true)
 
-      callback(new Error('Not allowed by CORS'));
-  }
-}
+//       callback(new Error('Not allowed by CORS'));
+//   }
+// }
 
 const http = require("http");
 // server instance
@@ -40,7 +40,8 @@ app.use(bodyParser.urlencoded({
 
 
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 // Add routes, both API and view
 app.use(routes);
 
