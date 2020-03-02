@@ -76,7 +76,7 @@ socketIO.on("connection", socket =>{
         for (i = 0; i < responseList.length; i++) {
             responseList[i] = responseList[i].split(",");
             // Certain region entries contain a , creating an extra element
-            if (responseList[i].length === 7) {
+            if (responseList[i].length === 9) {
                 var temp = responseList[i][0] + "," + responseList[i][1]
                 responseList[i].shift();
                 responseList[i][0] = temp;
@@ -96,6 +96,8 @@ socketIO.on("connection", socket =>{
             statBlock.cases = responseList[i][3];
             statBlock.deaths = responseList[i][4];
             statBlock.recovered = responseList[i][5];
+            statBlock.latitude = responseList[i][6];
+            statBlock.longitude = responseList[i][7];
             const promise = Stat.findOneAndUpdate(query, statBlock, {upsert:true})
             promises.push(promise);
         }
@@ -119,7 +121,7 @@ socketIO.on("connection", socket =>{
         for (i = 0; i < responseList.length; i++) {
             responseList[i] = responseList[i].split(",");
             // Certain region entries contain a , creating an extra element
-            if (responseList[i].length === 7) {
+            if (responseList[i].length === 9) {
                 var temp = responseList[i][0] + "," + responseList[i][1]
                 responseList[i].shift();
                 responseList[i][0] = temp;
@@ -139,6 +141,8 @@ socketIO.on("connection", socket =>{
           statBlock.cases = responseList[i][3];
           statBlock.deaths = responseList[i][4];
           statBlock.recovered = responseList[i][5];
+          statBlock.latitude = responseList[i][6];
+          statBlock.longitude = responseList[i][7];
           const promise = Stat.findOneAndUpdate(query, statBlock, {upsert:true})
           promises.push(promise);
       }

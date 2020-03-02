@@ -6,7 +6,9 @@ const statSchema = new Schema({
     region: { type: String },
     cases: { type: Number},
     deaths: {type: Number},
-    recovered: {type: Number}
+    recovered: {type: Number},
+    latitude: {type: String},
+    longitude: {type: String}
 });
 
 const Stat = mongoose.model("Stat", statSchema);
