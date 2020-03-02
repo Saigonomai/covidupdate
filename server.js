@@ -58,15 +58,17 @@ socketIO.on("connection", socket =>{
 
   socket.on("update_data", check => {
     let date_ob = new Date()
+    let hours = date_ob.getHours();
+
+    if (hours < 19) {
+      date_ob.setDate(date_ob.getDate() - 1);
+    }
     let year = date_ob.getFullYear();
     let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-    let day = ("0" + (date_ob.getDate() - 1)).slice(-2);
-    let hours = date_ob.getHours();
+    let day = ("0" + (date_ob.getDate())).slice(-2);
+    hours = date_ob.getHours();
     
 
-    if (hours >= 19) {
-      day = ("0" + date_ob.getDate()).slice(-2);
-    }
 
     let tail = month + "-" + day + "-" + year + ".csv"
       axios.get(url+tail).then(function (response) {
