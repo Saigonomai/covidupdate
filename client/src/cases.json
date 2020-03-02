@@ -1,0 +1,6 @@
+[
+    {"city":"Vancouver","province":"British Columbia","description":"Total: 8 cases","latitude":49.2827,"longitude":-123.1207},
+    {"city":"London","province":"Ontario","description":"Total: 1 case","latitude":42.9849,"longitude":-81.2453},
+    {"city":"Toronto","province":"Ontario","description":"Total: 14 cases","latitude":43.6532,"longitude":-79.3832},
+    {"city":"Montreal","province":"Quebec","description":"Total: 1 case","latitude":45.5017,"longitude":-73.5673}
+]
