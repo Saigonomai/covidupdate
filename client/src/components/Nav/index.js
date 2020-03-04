@@ -33,14 +33,21 @@ getCanStats = () => {
         .then(res => {
             let table = []
         table.push(<tr><td>Region</td><td>Cases</td><td>Deaths</td><td>Recovered</td></tr>)
+            let totalCases = 0;
+            let totalDeaths = 0;
+            let totalRecoveries = 0;
             for (let i = 0; i < res.data.length; i++) {
-                let children = []
+                let children = [];
             children.push(<td>{res.data[i].region}</td>)
             children.push(<td>{res.data[i].cases}</td>)
             children.push(<td>{res.data[i].deaths}</td>)
             children.push(<td>{res.data[i].recovered}</td>)
             table.push(<tr>{children}</tr>)
+            totalCases += res.data[i].cases;
+            totalDeaths += res.data[i].deaths;
+            totalRecoveries += res.data[i].recovered;
             }
+            table.push(<tr><td>Total</td><td>{totalCases}</td><td>{totalDeaths}</td><td>{totalRecoveries}</td></tr>)
             this.setState({canStatsTable: table})
         })
         .catch(err => console.log(err));
