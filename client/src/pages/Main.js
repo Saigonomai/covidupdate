@@ -30,7 +30,7 @@ class Main extends Component {
         API.getStats()
             .then(res => {
                 let table = [];
-            table.push(<tr><td><h2>Country</h2></td><td><h2>Region</h2></td><td><h2>Cases</h2></td><td><h2>Deaths</h2></td><td><h2>Recovered</h2></td></tr>)
+                table.push(<tr><td><h2>Country</h2></td><td><h2>Region</h2></td><td><h2>Cases</h2></td><td><h2>Deaths</h2></td><td><h2>Recovered</h2></td></tr>)
                 for (let i = 0; i < res.data.length; i++) {
                     let children = [];
                 children.push(<td className="entry">{res.data[i].country}</td>)
@@ -48,6 +48,7 @@ class Main extends Component {
 
     filterResults = () => {
         let table = [];
+        table.push(<tr><td><h2>Country</h2></td><td><h2>Region</h2></td><td><h2>Cases</h2></td><td><h2>Deaths</h2></td><td><h2>Recovered</h2></td></tr>)
         for (let i = 0; i < this.state.statsData.length; i++) {
             let children = [];
             if ((this.state.statsData[i].country.toLowerCase().includes(this.state.query.toLowerCase()))
