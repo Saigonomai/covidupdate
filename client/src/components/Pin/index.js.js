@@ -21,7 +21,7 @@ export default class Pins extends PureComponent {
           viewBox="0 0 24 24"
           style={{
             cursor: 'pointer',
-            fill: '#d00',
+            fill: city.fill,
             stroke: 'none',
             transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
           }}
