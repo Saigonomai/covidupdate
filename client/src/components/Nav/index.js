@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import API from "../../utils/API"
+import { NavHashLink } from 'react-router-hash-link';
 import socketIOClient from "socket.io-client";
 import "./Nav.css"
 
@@ -66,9 +67,9 @@ getCanStats = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/maps">
+                    <NavHashLink to="/#Maps">
                     Canadian Interactive Map
-                    </NavLink>
+                    </NavHashLink>
                 </li>
                 <li>
                     <NavLink exact to="/news">

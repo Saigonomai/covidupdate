@@ -49,6 +49,8 @@ class Maps extends Component {
 
     render() {
         return (
+          <div>
+            <h2>Interactive Map</h2>
             <MapGL
             {...this.state.viewport}
             width="98vw"
@@ -63,6 +65,7 @@ class Maps extends Component {
             {this.renderPopup()}
 
           </MapGL>
+          </div>
         );
     }
 }

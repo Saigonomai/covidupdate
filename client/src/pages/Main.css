@@ -8,6 +8,10 @@
     font-size: 18px;
 }
 
+.search {
+    padding-bottom: 20px;
+}
+
 table.gloStatsTable {
     width: 100%;
     margin: 0 auto;
