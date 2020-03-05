@@ -6,19 +6,33 @@ import Maps from "./Maps";
 
 
 class Main extends Component {
-    state = {
-        gloStatsTable: [],
-        statsData: [],
-        query: ""
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            gloStatsTable: [],
+            statsData: [],
+            query: "",
+            language: this.props.language || this.props.location.language || "cn"
+        };
+    }
 
     componentDidMount(){
     this.getGloStats();
     socket.on("new_data", this.getGloStats);
+    console.log(this.state.language);
+    if (this.props.location.page == "maps") {
+        this.mapsDiv.scrollIntoView({ behavior: "smooth" });
+    }
     }
 
     componentWillUnmount() {
         socket.off("new_data");
+    }
+
+    componentDidUpdate() {
+        if (this.props.location.page == "maps") {
+            this.mapsDiv.scrollIntoView({ behavior: "smooth" });
+        }
     }
 
     handleChange =  (e) => {
@@ -83,8 +97,10 @@ class Main extends Component {
                 {this.state.gloStatsTable}
             </table>
             </div>
-            <div id="Maps">
-            <Maps/>
+            <div id="Maps" ref={(el) => { this.mapsDiv = el; }}>
+            <Maps
+            language={this.state.language}
+            />
             </div>
             </div>
         );

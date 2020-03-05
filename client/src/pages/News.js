@@ -5,9 +5,13 @@ import { List, ListItem } from "../components/List";
 
 
 class News extends Component {
-    state = {
-        news: []
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+          news: [],
+          language: this.props.location.language || this.props.language || "cn"
+        };
+    }
 
     getNews = () => {
         API.getNews()
@@ -19,6 +23,7 @@ class News extends Component {
 
     componentDidMount() {
         this.getNews();
+        console.log(this.state.language)
     }
 
     render() {

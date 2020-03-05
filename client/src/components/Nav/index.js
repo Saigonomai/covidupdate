@@ -10,7 +10,8 @@ class Nav extends Component {
     constructor(){
         super();
         this.state = {
-            canStatsTable: []
+            canStatsTable: [],
+            language: "en"
         };
         
         socket = socketIOClient();
@@ -54,6 +55,16 @@ getCanStats = () => {
         .catch(err => console.log(err));
 };
 
+translate = () => {
+    if (this.state.language == "en") {
+        this.setState({language:"cn"});
+    } else if (this.state.language == "cn") {
+        this.setState({language:"en"});
+    } else {
+        this.setState({language:"en"});
+    }
+}
+
     render(){
         return (
         <nav  className="Navbar">
@@ -62,17 +73,34 @@ getCanStats = () => {
             </h1>
             <ul className="NavClass">
                 <li>
-                    <NavLink exact to="/">
+                    <NavLink
+                    exact to={{
+                        pathname:"/",
+                        language: this.state.language,
+                        page:"main"
+                    }}
+                    >
                         Global Statistics
                     </NavLink>
                 </li>
                 <li>
-                    <NavHashLink to="/#Maps">
+                    <NavLink
+                    exact to={{
+                        pathname:"/",
+                        language: this.state.language,
+                        page:"maps"
+                    }}
+                    >
                     Canadian Interactive Map
-                    </NavHashLink>
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/news">
+                    <NavLink
+                    exact to={{
+                        pathname:"/news",
+                        language: this.state.language
+                    }}
+                    >
                     Latest News
                     </NavLink>
                 </li>

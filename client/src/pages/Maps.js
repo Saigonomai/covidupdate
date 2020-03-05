@@ -21,9 +21,13 @@ class Maps extends Component {
             bearing: 0,
             pitch: 0,
             },
-            popupInfo: null
+            popupInfo: null,
+            language: this.props.language || this.props.location.language || "cn"
         };
     }
+    componentDidMount() {
+      console.log(this.state.language)
+  }
 
     renderPopup() {
         const {popupInfo} = this.state;
