@@ -11,7 +11,7 @@ class App extends Component {
         super(props);
         this.translate = this.translate.bind(this)
         this.state = {
-            language: "cn"
+            language: "en"
         }
     }
 
