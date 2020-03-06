@@ -8,37 +8,41 @@ class News extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          news: [],
-          language: this.props.location.language || this.props.language || "cn"
+        news: []
         };
     }
 
     getNews = () => {
         API.getNews()
-          .then(res => {
+        .then(res => {
             this.setState({ news: res.data})
-          })
-          .catch(err => console.log(err));
-      };
+        })
+        .catch(err => console.log(err));
+    };
 
     componentDidMount() {
         this.getNews();
-        console.log(this.state.language)
+        console.log(this.props.language)
     }
 
     render() {
         return (
             <div className="newsBox">
+                {this.props.language == "en" ? (
+                    <h2>Latest News</h2>
+                ) : (
+                    <h2>最新消息</h2>
+                )}
                 <List>
                 {this.state.news.map(article => (
-                  <ListItem
-                  link={article.url}
-                  title={article.title}
-                  source={article.source.name}
-                  author={article.author || "N/A"}
-                  description={article.description || "N/A"}/>
+                <ListItem
+                link={article.url}
+                title={article.title}
+                source={article.source.name}
+                author={article.author || "N/A"}
+                description={article.description || "N/A"}/>
                 ))}
-              </List>
+            </List>
             </div>
         );
     }

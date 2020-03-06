@@ -7,11 +7,11 @@ import "./Nav.css"
 
 var socket;
 class Nav extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             canStatsTable: [],
-            language: "en"
+            language: this.props.language
         };
         
         socket = socketIOClient();
@@ -55,68 +55,88 @@ getCanStats = () => {
         .catch(err => console.log(err));
 };
 
-translate = () => {
-    if (this.state.language == "en") {
-        this.setState({language:"cn"});
-    } else if (this.state.language == "cn") {
-        this.setState({language:"en"});
-    } else {
-        this.setState({language:"en"});
-    }
-}
-
     render(){
         return (
-        <nav  className="Navbar">
-            <h1 className="Brand">
-            Covid-19 Statistics Tracker
-            </h1>
-            <ul className="NavClass">
-                <li>
-                    <NavLink
-                    exact to={{
-                        pathname:"/",
-                        language: this.state.language,
-                        page:"main"
-                    }}
-                    >
-                        Global Statistics
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                    exact to={{
-                        pathname:"/",
-                        language: this.state.language,
-                        page:"maps"
-                    }}
-                    >
-                    Canadian Interactive Map
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                    exact to={{
-                        pathname:"/news",
-                        language: this.state.language
-                    }}
-                    >
-                    Latest News
-                    </NavLink>
-                </li>
-            </ul>
-
-            <button className="refresh" onClick={this.updateStats}>Update Statistics</button>
-            <p className="tooltip">Note: Database gets updated after 9PM EST everyday.</p>
-
-            <div className="canStats">
-                <h2>Covid-19 Canadian Statistics</h2>
-                <table className="canStatsTable">
-                    {this.state.canStatsTable}
-                </table>
+            <div>
+                {this.props.language == "en" ? (
+                <nav  className="Navbar">
+                    <h1 className="Brand">
+                    Covid-19 Statistics Tracker
+                    </h1>
+                    <ul className="NavClass">
+                        <li>
+                            <NavLink exact to="/">                    >
+                            Global Statistics
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavHashLink
+                            to="/#Maps"
+                            scroll={el => el.scrollIntoView({ behavior: 'smooth'})}
+                            >
+                            Canadian Interactive Map
+                            </NavHashLink>
+                        </li>
+                        <li>
+                            <NavLink exact to="/news">
+                            Latest News
+                            </NavLink>
+                        </li>
+                    </ul>
+        
+                    <button className="refresh" onClick={this.updateStats}>Update Statistics</button>
+                    <button className="refresh" onClick={this.props.translate}>Change Language</button>
+                    <p className="tooltip">Note: Database gets updated after 9PM EST everyday.</p>
+        
+                    <div className="canStats">
+                        <h2>Covid-19 Canadian Statistics</h2>
+                        <table className="canStatsTable">
+                            {this.state.canStatsTable}
+                        </table>
+                    </div>
+        
+                </nav>
+                ) : (
+                <nav  className="Navbar">
+                    <h1 className="Brand">
+                    Covid-19统计跟踪
+                    </h1>
+                    <ul className="NavClass">
+                        <li>
+                            <NavLink exact to="/">                    >
+                            全球统计
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavHashLink
+                            to="/#Maps"
+                            scroll={el => el.scrollIntoView({ behavior: 'smooth'})}
+                            >
+                            加拿大互动地图
+                            </NavHashLink>
+                        </li>
+                        <li>
+                            <NavLink exact to="/news">
+                            最新消息
+                            </NavLink>
+                        </li>
+                    </ul>
+        
+                    <button className="refresh" onClick={this.updateStats}>更新统计</button>
+                    <button className="refresh" onClick={this.props.translate}>改变语言</button>
+                    <p className="tooltip">注意：数据库每天在美国东部标准时间晚上9点之后更新</p>
+        
+                    <div className="canStats">
+                        <h2>Covid-19加拿大统计</h2>
+                        <table className="canStatsTable">
+                            {this.state.canStatsTable}
+                        </table>
+                    </div>
+        
+                </nav>
+                )}
             </div>
 
-        </nav>
         );
     }
 }

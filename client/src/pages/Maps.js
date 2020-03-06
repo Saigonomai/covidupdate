@@ -6,6 +6,8 @@ import "../../node_modules/mapbox-gl/dist/mapbox-gl.css";
 import "./Maps.css"
 //Local JSON file to provide additional information
 import CASES from "../cases.json"
+import CNCASES from "../cncases.json"
+
 
 //key is public default key, because Mapbox doesn't work without the token being pre-defined
 let MAPBOX_TOKEN = "pk.eyJ1Ijoic2FpZ29ub21haSIsImEiOiJjazc1azhjNmIwMWpwM21zdnNuZnYyOHVhIn0.MS2S6fhWPQz_SQrEEstzUw"
@@ -21,55 +23,76 @@ class Maps extends Component {
             bearing: 0,
             pitch: 0,
             },
-            popupInfo: null,
-            language: this.props.language || this.props.location.language || "cn"
+            popupInfo: null
         };
     }
     componentDidMount() {
-      console.log(this.state.language)
-  }
+    console.log(this.props.language)
+    }
 
     renderPopup() {
         const {popupInfo} = this.state;
     
         return (
-          popupInfo && (
+        popupInfo && (
             <Popup className="popup"
-              tipSize={5}
-              anchor="top"
-              closeButton={false}
-              longitude={popupInfo.longitude}
-              latitude={popupInfo.latitude}
-              onClose={() => this.setState({popupInfo: null})}
+            tipSize={5}
+            anchor="top"
+            closeButton={false}
+            longitude={popupInfo.longitude}
+            latitude={popupInfo.latitude}
+            onClose={() => this.setState({popupInfo: null})}
             >
-              <Info info={popupInfo} />
+            <Info info={popupInfo} />
             </Popup>
-          )
+        )
         );
-      }
-      onClickMarker = city => {
+    }
+    onClickMarker = city => {
         this.setState({popupInfo: city});
-      };
+    };
 
     render() {
         return (
-          <div>
-            <h2>Interactive Map</h2>
-            <MapGL
-            {...this.state.viewport}
-            width="98vw"
-            height="70vh"
-            mapStyle="mapbox://styles/mapbox/dark-v9"
-            onViewportChange={viewport => this.setState({viewport})}
-            mapboxApiAccessToken={MAPBOX_TOKEN}
-          >
+        <div>
+            {this.props.language == "en" ? (
+                <div>
+                <h2>Interactive Map</h2>
+                <MapGL
+                {...this.state.viewport}
+                width="98vw"
+                height="70vh"
+                mapStyle="mapbox://styles/mapbox/dark-v9"
+                onViewportChange={viewport => this.setState({viewport})}
+                mapboxApiAccessToken={MAPBOX_TOKEN}
+                >
 
-            <Pins data={CASES} onClick={this.onClickMarker} />
+                <Pins data={CASES} onClick={this.onClickMarker} />
 
-            {this.renderPopup()}
+                {this.renderPopup()}
 
-          </MapGL>
-          </div>
+                </MapGL>
+                </div>
+            ) : (
+                <div>
+                <h2>互动地图</h2>
+                <MapGL
+                {...this.state.viewport}
+                width="98vw"
+                height="70vh"
+                mapStyle="mapbox://styles/mapbox/dark-v9"
+                onViewportChange={viewport => this.setState({viewport})}
+                mapboxApiAccessToken={MAPBOX_TOKEN}
+                >
+
+                <Pins data={CNCASES} onClick={this.onClickMarker} />
+
+                {this.renderPopup()}
+
+                </MapGL>
+                </div>
+            )}
+        </div>
         );
     }
 }

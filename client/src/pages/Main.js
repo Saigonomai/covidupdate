@@ -11,18 +11,17 @@ class Main extends Component {
         this.state = {
             gloStatsTable: [],
             statsData: [],
-            query: "",
-            language: this.props.language || this.props.location.language || "cn"
+            query: ""
         };
     }
 
     componentDidMount(){
-    this.getGloStats();
-    socket.on("new_data", this.getGloStats);
-    console.log(this.state.language);
-    if (this.props.location.page == "maps") {
-        this.mapsDiv.scrollIntoView({ behavior: "smooth" });
-    }
+        this.getGloStats();
+        socket.on("new_data", this.getGloStats);
+        console.log(this.props.language);
+        if (window.location.href.includes("#Maps")) {
+            this.mapsDiv.scrollIntoView({ behavior: "smooth" });
+        }
     }
 
     componentWillUnmount() {
@@ -30,7 +29,7 @@ class Main extends Component {
     }
 
     componentDidUpdate() {
-        if (this.props.location.page == "maps") {
+        if (window.location.href.includes("#Maps")) {
             this.mapsDiv.scrollIntoView({ behavior: "smooth" });
         }
     }
@@ -83,25 +82,52 @@ class Main extends Component {
     render() {
         return (
             <div>
-            <div className="gloStats">
-            <h2>Covid-19 Global Statistics</h2>
-            <div className="search">
-            <input type="text" onChange={ this.handleChange } />
-            <input
-            type="button"
-            value="Filter Statistics"
-            onClick={ this.filterResults }
-            />
-            </div>
-            <table className="gloStatsTable">
-                {this.state.gloStatsTable}
-            </table>
-            </div>
-            <div id="Maps" ref={(el) => { this.mapsDiv = el; }}>
-            <Maps
-            language={this.state.language}
-            />
-            </div>
+                {this.props.language == "en" ? (
+                    <div>
+                        <div className="gloStats">
+                            <h2>Covid-19 Global Statistics</h2>
+                            <div className="search">
+                                <input type="text" onChange={ this.handleChange } />
+                                <input
+                                type="button"
+                                value="Filter Statistics"
+                                onClick={ this.filterResults }
+                                />
+                            </div>
+                            <table className="gloStatsTable">
+                                {this.state.gloStatsTable}
+                            </table>
+                        </div>
+                        <div id="Maps" ref={(el) => { this.mapsDiv = el; }}>
+                            <Maps
+                            language={this.props.language}
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <div>
+                        <div className="gloStats">
+                            <h2>Covid-19全球统计</h2>
+                            <div className="search">
+                                <input type="text" onChange={ this.handleChange } />
+                                <input
+                                type="button"
+                                value="过滤统计"
+                                onClick={ this.filterResults }
+                                />
+                            </div>
+                            <table className="gloStatsTable">
+                                {this.state.gloStatsTable}
+                            </table>
+                        </div>
+                        <div id="Maps" ref={(el) => { this.mapsDiv = el; }}>
+                            <Maps
+                            language={this.props.language}
+                            />
+                        </div>
+                    </div>
+
+                )}
             </div>
         );
     }
