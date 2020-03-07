@@ -22,7 +22,6 @@ class News extends Component {
 
     componentDidMount() {
         this.getNews();
-        console.log(this.props.language)
     }
 
     render() {

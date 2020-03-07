@@ -26,9 +26,6 @@ class Maps extends Component {
             popupInfo: null
         };
     }
-    componentDidMount() {
-    console.log(this.props.language)
-    }
 
     renderPopup() {
         const {popupInfo} = this.state;
