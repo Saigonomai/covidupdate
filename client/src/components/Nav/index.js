@@ -11,6 +11,7 @@ class Nav extends Component {
         super(props);
         this.state = {
             canStatsTable: [],
+            canStatsTableCN: [],
             language: this.props.language
         };
         
@@ -33,24 +34,37 @@ updateStats = () => {
 getCanStats = () => {
     API.getCanStats()
         .then(res => {
-            let table = []
-        table.push(<tr><td>Region</td><td>Cases</td><td>Deaths</td><td>Recovered</td></tr>)
+            let table = [];
+            table.push(<tr><td>Region</td><td>Cases</td><td>Deaths</td><td>Recovered</td></tr>)
             let totalCases = 0;
             let totalDeaths = 0;
             let totalRecoveries = 0;
             for (let i = 0; i < res.data.length; i++) {
                 let children = [];
-            children.push(<td>{res.data[i].region}</td>)
-            children.push(<td>{res.data[i].cases}</td>)
-            children.push(<td>{res.data[i].deaths}</td>)
-            children.push(<td>{res.data[i].recovered}</td>)
-            table.push(<tr>{children}</tr>)
-            totalCases += res.data[i].cases;
-            totalDeaths += res.data[i].deaths;
-            totalRecoveries += res.data[i].recovered;
+                children.push(<td>{res.data[i].region}</td>)
+                children.push(<td>{res.data[i].cases}</td>)
+                children.push(<td>{res.data[i].deaths}</td>)
+                children.push(<td>{res.data[i].recovered}</td>)
+                table.push(<tr>{children}</tr>)
+                totalCases += res.data[i].cases;
+                totalDeaths += res.data[i].deaths;
+                totalRecoveries += res.data[i].recovered;
             }
             table.push(<tr><td>Total</td><td>{totalCases}</td><td>{totalDeaths}</td><td>{totalRecoveries}</td></tr>)
             this.setState({canStatsTable: table})
+
+            let tablecn = [];
+            tablecn.push(<tr><td><h2>区域</h2></td><td><h2>确诊病例</h2></td><td><h2>死亡</h2></td><td><h2>治愈</h2></td></tr>)
+            for (let i = 0; i < res.data.length; i++) {
+                let childrencn = [];
+                childrencn.push(<td>{res.data[i].regioncn}</td>)
+                childrencn.push(<td>{res.data[i].cases}</td>)
+                childrencn.push(<td>{res.data[i].deaths}</td>)
+                childrencn.push(<td>{res.data[i].recovered}</td>)
+                tablecn.push(<tr>{childrencn}</tr>)
+            }
+            tablecn.push(<tr><td>总计</td><td>{totalCases}</td><td>{totalDeaths}</td><td>{totalRecoveries}</td></tr>)
+            this.setState({canStatsTableCN: tablecn});
         })
         .catch(err => console.log(err));
 };
@@ -129,7 +143,7 @@ getCanStats = () => {
                     <div className="canStats">
                         <h2>Covid-19加拿大统计</h2>
                         <table className="canStatsTable">
-                            {this.state.canStatsTable}
+                            {this.state.canStatsTableCN}
                         </table>
                     </div>
         

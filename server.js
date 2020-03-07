@@ -85,24 +85,58 @@ socketIO.on("connection", socket =>{
         }
         responseList.shift();
         responseList.pop();
-        let promises = [];
+
+        let promises1 = [];
+        let translations = [];
+        let responses = [];
         for (let i = 0; i < responseList.length; i++) {
-            var query = {};
-            query.region = responseList[i][0];
-            query.country = responseList[i][1];
-            var statBlock = {};
-            statBlock.region = responseList[i][0];
-            statBlock.country = responseList[i][1];
-            statBlock.cases = responseList[i][3];
-            statBlock.deaths = responseList[i][4];
-            statBlock.recovered = responseList[i][5];
-            statBlock.latitude = responseList[i][6];
-            statBlock.longitude = responseList[i][7];
-            const promise = Stat.findOneAndUpdate(query, statBlock, {upsert:true})
-            promises.push(promise);
+
+          promises1.push(axios.get("https://translation.googleapis.com/language/translate/v2/", {
+            params: {
+              q: responseList[i][0]+"xxxx"+responseList[i][1],
+              source: "en",
+              target: "zh",
+              key: process.env.GOOGLE_KEY
+            }
+          })
+          .then(function (returned) {
+            translations.push(returned.data.data.translations[0].translatedText.split("xxxx"));
+            responses.push(responseList[i]);
+          })
+          .catch(function (error) {
+            console.log(error);
+          }))
+
         }
-        Promise.all(promises).then(() => {
-          socketIO.sockets.emit("new_data");
+        Promise.all(promises1).then(() => {          
+          let promises2 = [];
+          for (let i = 0; i < responses.length; i++) {
+              var query = {};
+              query.region = responses[i][0];
+              query.country = responses[i][1];
+              var statBlock = {};
+              statBlock.region = responses[i][0];
+              statBlock.country = responses[i][1];
+
+              if (translations[i].length == 2) {
+                statBlock.regioncn = translations[i][0];
+                statBlock.countrycn = translations[i][1];    
+              } else {
+                statBlock.regioncn = "";
+                statBlock.countrycn = translations[i][0];
+              }
+
+              statBlock.cases = responses[i][3];
+              statBlock.deaths = responses[i][4];
+              statBlock.recovered = responses[i][5];
+              statBlock.latitude = responses[i][6];
+              statBlock.longitude = responses[i][7];
+              const promise = Stat.findOneAndUpdate(query, statBlock, {upsert:true})
+              promises2.push(promise);
+          }
+          Promise.all(promises2).then(() => {
+            socketIO.sockets.emit("new_data");
+          });
         });
       });
   });
@@ -130,24 +164,59 @@ socketIO.on("connection", socket =>{
         }
         responseList.shift();
         responseList.pop();
-        let promises = [];
+
+
+        let promises1 = [];
+        let translations = [];
+        let responses = [];
         for (let i = 0; i < responseList.length; i++) {
-          var query = {};
-          query.region = responseList[i][0];
-          query.country = responseList[i][1];
-          var statBlock = {};
-          statBlock.region = responseList[i][0];
-          statBlock.country = responseList[i][1];
-          statBlock.cases = responseList[i][3];
-          statBlock.deaths = responseList[i][4];
-          statBlock.recovered = responseList[i][5];
-          statBlock.latitude = responseList[i][6];
-          statBlock.longitude = responseList[i][7];
-          const promise = Stat.findOneAndUpdate(query, statBlock, {upsert:true})
-          promises.push(promise);
-      }
-        Promise.all(promises).then(() => {
-          socketIO.sockets.emit("new_data");
+
+          promises1.push(axios.get("https://translation.googleapis.com/language/translate/v2/", {
+            params: {
+              q: responseList[i][0]+"xxxx"+responseList[i][1],
+              source: "en",
+              target: "zh",
+              key: process.env.GOOGLE_KEY
+            }
+          })
+          .then(function (returned) {
+            translations.push(returned.data.data.translations[0].translatedText.split("xxxx"));
+            responses.push(responseList[i]);
+          })
+          .catch(function (error) {
+            console.log(error);
+          }))
+
+        }
+        Promise.all(promises1).then(() => {          
+          let promises2 = [];
+          for (let i = 0; i < responses.length; i++) {
+              var query = {};
+              query.region = responses[i][0];
+              query.country = responses[i][1];
+              var statBlock = {};
+              statBlock.region = responses[i][0];
+              statBlock.country = responses[i][1];
+
+              if (translations[i].length == 2) {
+                statBlock.regioncn = translations[i][0];
+                statBlock.countrycn = translations[i][1];    
+              } else {
+                statBlock.regioncn = "";
+                statBlock.countrycn = translations[i][0];
+              }
+
+              statBlock.cases = responses[i][3];
+              statBlock.deaths = responses[i][4];
+              statBlock.recovered = responses[i][5];
+              statBlock.latitude = responses[i][6];
+              statBlock.longitude = responses[i][7];
+              const promise = Stat.findOneAndUpdate(query, statBlock, {upsert:true})
+              promises2.push(promise);
+          }
+          Promise.all(promises2).then(() => {
+            socketIO.sockets.emit("new_data");
+          });
         });
       });
     }

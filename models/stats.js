@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 const statSchema = new Schema({
     country: { type: String, required: true },
     region: { type: String },
+    countrycn: { type: String },
+    regioncn: { type: String },
     cases: { type: Number},
     deaths: {type: Number},
     recovered: {type: Number},

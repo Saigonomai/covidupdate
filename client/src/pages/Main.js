@@ -11,6 +11,7 @@ class Main extends Component {
         this.state = {
             gloStatsTable: [],
             statsData: [],
+            gloStatsTableCN: [],
             query: ""
         };
     }
@@ -54,6 +55,20 @@ class Main extends Component {
                 table.push(<tr>{children}</tr>)
                 }
                 this.setState({gloStatsTable: table});
+                console.log(this.state.gloStatsTable);
+                let tablecn = [];
+                tablecn.push(<tr><td><h2>国家</h2></td><td><h2>区域</h2></td><td><h2>确诊病例</h2></td><td><h2>死亡</h2></td><td><h2>治愈</h2></td></tr>)
+                for (let i = 0; i < res.data.length; i++) {
+                    let childrencn = [];
+                childrencn.push(<td className="entry">{res.data[i].countrycn}</td>)
+                childrencn.push(<td className="entry">{res.data[i].regioncn}</td>)
+                childrencn.push(<td className="entry">{res.data[i].cases}</td>)
+                childrencn.push(<td className="entry">{res.data[i].deaths}</td>)
+                childrencn.push(<td className="entry">{res.data[i].recovered}</td>)
+                tablecn.push(<tr>{childrencn}</tr>)
+                }
+                this.setState({gloStatsTableCN: tablecn});
+                console.log(this.state.gloStatsTableCN)
                 this.setState({statsData: res.data});
             })
             .catch(err => console.log(err));
@@ -78,6 +93,27 @@ class Main extends Component {
 
         
     }
+
+    filterResultsCN = () => {
+        let table = [];
+        table.push(<tr><td><h2>国家</h2></td><td><h2>区域</h2></td><td><h2>确诊病例</h2></td><td><h2>死亡</h2></td><td><h2>治愈</h2></td></tr>)
+        for (let i = 0; i < this.state.statsData.length; i++) {
+            let children = [];
+            if ((this.state.statsData[i].countrycn.toLowerCase().includes(this.state.query.toLowerCase()))
+            || (this.state.statsData[i].regioncn.toLowerCase().includes(this.state.query.toLowerCase()))){
+                children.push(<td className="entry">{this.state.statsData[i].countrycn}</td>)
+                children.push(<td className="entry">{this.state.statsData[i].regioncn}</td>)
+                children.push(<td className="entry">{this.state.statsData[i].cases}</td>)
+                children.push(<td className="entry">{this.state.statsData[i].deaths}</td>)
+                children.push(<td className="entry">{this.state.statsData[i].recovered}</td>)
+                table.push(<tr>{children}</tr>)
+            }
+        }
+        this.setState({gloStatsTable: table});
+
+        
+    }
+
 
     render() {
         return (
@@ -113,11 +149,11 @@ class Main extends Component {
                                 <input
                                 type="button"
                                 value="过滤统计"
-                                onClick={ this.filterResults }
+                                onClick={ this.filterResultsCN }
                                 />
                             </div>
                             <table className="gloStatsTable">
-                                {this.state.gloStatsTable}
+                                {this.state.gloStatsTableCN}
                             </table>
                         </div>
                         <div id="Maps" ref={(el) => { this.mapsDiv = el; }}>
