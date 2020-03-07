@@ -93,10 +93,7 @@ class Main extends Component {
     filterResultsCN = () => {
         let table = [];
         table.push(<tr><td><h2>国家</h2></td><td><h2>区域</h2></td><td><h2>确诊病例</h2></td><td><h2>死亡</h2></td><td><h2>治愈</h2></td></tr>)
-        console.log(this.state.statsData);
         for (let i = 0; i < this.state.statsData.length; i++) {
-            console.log(this.state.statsData[i]);
-            console.log(this.state.statsData[i].countrycn)
             let children = [];
             if ((this.state.statsData[i].countrycn.includes(this.state.query))
             || (this.state.statsData[i].regioncn.includes(this.state.query))){
