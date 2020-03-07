@@ -19,7 +19,6 @@ class Main extends Component {
     componentDidMount(){
         this.getGloStats();
         socket.on("new_data", this.getGloStats);
-        console.log(this.props.language);
         if (window.location.href.includes("#Maps")) {
             this.mapsDiv.scrollIntoView({ behavior: "smooth" });
         }
@@ -37,7 +36,6 @@ class Main extends Component {
 
     handleChange =  (e) => {
         this.setState({ query: e.target.value });
-        console.log(this.state.query);
     }
     
     getGloStats = () => {
@@ -55,7 +53,6 @@ class Main extends Component {
                 table.push(<tr>{children}</tr>)
                 }
                 this.setState({gloStatsTable: table});
-                console.log(this.state.gloStatsTable);
                 let tablecn = [];
                 tablecn.push(<tr><td><h2>国家</h2></td><td><h2>区域</h2></td><td><h2>确诊病例</h2></td><td><h2>死亡</h2></td><td><h2>治愈</h2></td></tr>)
                 for (let i = 0; i < res.data.length; i++) {
@@ -68,7 +65,6 @@ class Main extends Component {
                 tablecn.push(<tr>{childrencn}</tr>)
                 }
                 this.setState({gloStatsTableCN: tablecn});
-                console.log(this.state.gloStatsTableCN)
                 this.setState({statsData: res.data});
             })
             .catch(err => console.log(err));
