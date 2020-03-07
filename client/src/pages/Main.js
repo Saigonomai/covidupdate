@@ -99,8 +99,8 @@ class Main extends Component {
         table.push(<tr><td><h2>国家</h2></td><td><h2>区域</h2></td><td><h2>确诊病例</h2></td><td><h2>死亡</h2></td><td><h2>治愈</h2></td></tr>)
         for (let i = 0; i < this.state.statsData.length; i++) {
             let children = [];
-            if ((this.state.statsData[i].countrycn.toLowerCase().includes(this.state.query.toLowerCase()))
-            || (this.state.statsData[i].regioncn.toLowerCase().includes(this.state.query.toLowerCase()))){
+            if ((this.state.statsData[i].countrycn.includes(this.state.query))
+            || (this.state.statsData[i].regioncn.includes(this.state.query))){
                 children.push(<td className="entry">{this.state.statsData[i].countrycn}</td>)
                 children.push(<td className="entry">{this.state.statsData[i].regioncn}</td>)
                 children.push(<td className="entry">{this.state.statsData[i].cases}</td>)
@@ -109,7 +109,7 @@ class Main extends Component {
                 table.push(<tr>{children}</tr>)
             }
         }
-        this.setState({gloStatsTable: table});
+        this.setState({gloStatsTableCN: table});
 
         
     }
