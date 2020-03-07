@@ -93,14 +93,14 @@ socketIO.on("connection", socket =>{
 
           promises1.push(axios.get("https://translation.googleapis.com/language/translate/v2/", {
             params: {
-              q: responseList[i][0]+"xxxx"+responseList[i][1],
+              q: responseList[i][0]+"*"+responseList[i][1],
               source: "en",
               target: "zh",
               key: process.env.GOOGLE_KEY
             }
           })
           .then(function (returned) {
-            translations.push(returned.data.data.translations[0].translatedText.split("xxxx"));
+            translations.push(returned.data.data.translations[0].translatedText.split("*"));
             responses.push(responseList[i]);
           })
           .catch(function (error) {
@@ -173,14 +173,14 @@ socketIO.on("connection", socket =>{
 
           promises1.push(axios.get("https://translation.googleapis.com/language/translate/v2/", {
             params: {
-              q: responseList[i][0]+"xxxx"+responseList[i][1],
+              q: responseList[i][0]+"*"+responseList[i][1],
               source: "en",
               target: "zh",
               key: process.env.GOOGLE_KEY
             }
           })
           .then(function (returned) {
-            translations.push(returned.data.data.translations[0].translatedText.split("xxxx"));
+            translations.push(returned.data.data.translations[0].translatedText.split("*"));
             responses.push(responseList[i]);
           })
           .catch(function (error) {
