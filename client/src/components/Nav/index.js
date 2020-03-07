@@ -79,7 +79,7 @@ getCanStats = () => {
                     </h1>
                     <ul className="NavClass">
                         <li>
-                            <NavLink exact to="/">                    >
+                            <NavLink exact to="/">
                             Global Statistics
                             </NavLink>
                         </li>
@@ -99,7 +99,7 @@ getCanStats = () => {
                     </ul>
         
                     <button className="refresh" onClick={this.updateStats}>Update Statistics</button>
-                    <button className="refresh" onClick={this.props.translate}>Change Language</button>
+                    <button className="refresh" onClick={this.props.translate}>Change Language/改变语言(EN/CN)</button>
                     <p className="tooltip">Note: Database gets updated after 9PM EST everyday.</p>
         
                     <div className="canStats">
@@ -137,7 +137,7 @@ getCanStats = () => {
                     </ul>
         
                     <button className="refresh" onClick={this.updateStats}>更新统计</button>
-                    <button className="refresh" onClick={this.props.translate}>改变语言</button>
+                    <button className="refresh" onClick={this.props.translate}>Change Language/改变语言(EN/CN)</button>
                     <p className="tooltip">注意：数据库每天在美国东部标准时间晚上9点之后更新</p>
         
                     <div className="canStats">

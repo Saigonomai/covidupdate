@@ -1,6 +1,7 @@
 [
-    {"city":"温哥华","province":"不列颠哥伦比亚省","description":"总计：13例","latitude":49.2827,"longitude":-123.1207, "fill":"#dd0"},
+    {"city":"温哥华","province":"不列颠哥伦比亚省","description":"总计：13例","latitude":49.2827,"longitude":-123.1207, "fill":"#FF4500"},
     {"city":"伦敦","province":"安大略省","description":"总计：1例","latitude":42.9849,"longitude":-81.2453, "fill":"#0d0"},
     {"city":"多伦多","province":"安大略省","description":"总计：21例","latitude":43.6532,"longitude":-79.3832, "fill":"#FF4500"},
-    {"city":"蒙特利尔","province":"魁北克省","description":"总计：2例","latitude":45.5017,"longitude":-73.5673, "fill":"#0d0"}
+    {"city":"蒙特利尔","province":"魁北克省","description":"总计：2例","latitude":45.5017,"longitude":-73.5673, "fill":"#0d0"},
+    {"city":"卡尔加里","province":"艾伯塔省","description":"总计：1例","latitude":51.0447,"longitude":-114.0719, "fill":"#0d0"}
 ]
