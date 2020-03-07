@@ -117,7 +117,7 @@ getCanStats = () => {
                     </h1>
                     <ul className="NavClass">
                         <li>
-                            <NavLink exact to="/">                    >
+                            <NavLink exact to="/">
                             全球统计
                             </NavLink>
                         </li>
