@@ -76,7 +76,11 @@ socketIO.on("connection", socket =>{
         for (i = 0; i < responseList.length; i++) {
             responseList[i] = responseList[i].split(",");
             // Certain region entries contain a , creating an extra element
-            if (responseList[i].length === 9) {
+            if (responseList[i][1] == '"Korea') {
+              var temp = responseList[i][1].replace('"', "") + "," + responseList[i][2].replace('"', "")
+              responseList[i][1] = temp;
+              responseList[i].splice(2,1);
+            } else if (responseList[i].length === 9) {
                 var temp = responseList[i][0] + "," + responseList[i][1]
                 responseList[i].shift();
                 responseList[i][0] = temp;
@@ -155,7 +159,11 @@ socketIO.on("connection", socket =>{
         for (i = 0; i < responseList.length; i++) {
             responseList[i] = responseList[i].split(",");
             // Certain region entries contain a , creating an extra element
-            if (responseList[i].length === 9) {
+            if (responseList[i][1] != "Korea") {
+              var temp = responseList[i][1] + "," + responseList[i][2]
+              responseList[i][1] = temp;
+              responseList[i].splice(2,1);
+            } else if (responseList[i].length === 9) {
                 var temp = responseList[i][0] + "," + responseList[i][1]
                 responseList[i].shift();
                 responseList[i][0] = temp;
